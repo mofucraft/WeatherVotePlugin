@@ -6,6 +6,7 @@ authors: [ 1necat ]
 description: Weathervoteplugin
 
 commands:
-  weathervote:
+  mvote:
     description: wheathervote plugin command
-    usage: /weathervote < vote | oppose >
+    usage: /mvote < vote (sun|day) | oppose | voteinfo >
+    permisson:

@@ -22,8 +22,7 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
     public void onDisable() {
         // Plugin shutdown logic
     }
-
-    // 後でいい感じに書き直してね！
+    
     private static int weatherchangetask;
     private static String votecomamnd;
 

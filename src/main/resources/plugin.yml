@@ -9,4 +9,3 @@ commands:
   mvote:
     description: wheathervote plugin command
     usage: /mvote < vote (sun|day) | oppose | voteinfo >
-    permisson:

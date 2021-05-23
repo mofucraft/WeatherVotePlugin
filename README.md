@@ -1,5 +1,7 @@
 # Weather vote plugin
-Weather vote plugin は プレイヤーの投票により、晴れにするBukkitプラグインです。
+
+# Overview
+Weather vote plugin は プレイヤーの投票により、晴れにするSpoigotプラグインです。
 
 ※もふくらふとに最適化して作られたプラグインです。
 
@@ -9,7 +11,7 @@ Weather vote plugin は プレイヤーの投票により、晴れにするBukki
 
 ・投票受付中には投票を開始させることはできません。（二重投票開始をしない）
 
-・5分おきに投票ができるように
+・5分おきに投票できます
 
 # Commands
 

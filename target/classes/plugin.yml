@@ -1,0 +1,11 @@
+name: Weathervoteplugin
+version: 1.0
+main: ine0056.github.com.weathervoteplugin.Weathervoteplugin
+api-version: 1.16
+authors: [ 1necat ]
+description: Weathervoteplugin
+
+commands:
+  mvote:
+    description: wheathervote plugin command
+    usage: /mvote < vote (sun|day) | oppose | voteinfo >

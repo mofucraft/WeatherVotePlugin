@@ -1,6 +1,8 @@
 # Weather vote plugin
 Weather vote plugin は プレイヤーの投票により、晴れにするBukkitプラグインです。
 
+※もふくらふとに最適化して作られたプラグインです。
+
 ・反対者が一人いた場合にはそのままの気候
 
 ・ワールド「world」のみ晴れに変更

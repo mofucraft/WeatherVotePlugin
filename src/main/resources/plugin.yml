@@ -8,4 +8,4 @@ description: Weathervoteplugin
 commands:
   mvote:
     description: wheathervote plugin command
-    usage: /mvote < vote (sun|day) | oppose | voteinfo >
+    usage: /mvote < sun | day | oppose(o) | voteinfo(info) >

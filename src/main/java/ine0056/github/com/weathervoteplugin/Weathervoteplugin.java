@@ -121,7 +121,7 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                             }
                             return true;
                         }
-                        return false;
+                            return false;
                     }
 
 

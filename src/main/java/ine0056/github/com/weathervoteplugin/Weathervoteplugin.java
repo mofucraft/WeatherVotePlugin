@@ -100,28 +100,31 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                         }
                     } else if (args[0].equalsIgnoreCase("oppose") || args[0].equalsIgnoreCase("o")) {
 
-                        if (args[1].equalsIgnoreCase("sun")) {
-                            if (sunvotecomamnd == "voted") {
-                                Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、天候の変更を中断しました");
-                                //  タイマーを止める
-                                Bukkit.getScheduler().cancelTask(weatherchangetask); //予約したタスクをキャンセルする
-                                sunvotecomamnd = "nonvote";
-                            } else {
-                                sender.sendMessage(ChatColor.RED + "投票が開始されていないため、このコマンドを実行できません。");
-                            }
-                            return true;
-                        } else if (args[1].equalsIgnoreCase("day")) {
-                            if (dayvotecomamnd == "voted") {
-                                Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、時間の変更を中断しました");
-                                //  タイマーを止める
-                                Bukkit.getScheduler().cancelTask(timechangetask); //予約したタスクをキャンセルする
-                                dayvotecomamnd = "nonvote";
-                            } else {
-                                sender.sendMessage(ChatColor.RED + "投票が開始されていないため、このコマンドを実行できません。");
-                            }
-                            return true;
-                        }
+                        if (args.length == 1) {
                             return false;
+                        } else {
+                            if (args[1].equalsIgnoreCase("sun")) {
+                                if (sunvotecomamnd == "voted") {
+                                    Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、天候の変更を中断しました");
+                                    //  タイマーを止める
+                                    Bukkit.getScheduler().cancelTask(weatherchangetask); //予約したタスクをキャンセルする
+                                    sunvotecomamnd = "nonvote";
+                                } else {
+                                    sender.sendMessage(ChatColor.RED + "投票が開始されていないため、このコマンドを実行できません。");
+                                }
+                                return true;
+                            } else if (args[1].equalsIgnoreCase("day")) {
+                                if (dayvotecomamnd == "voted") {
+                                    Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、時間の変更を中断しました");
+                                    //  タイマーを止める
+                                    Bukkit.getScheduler().cancelTask(timechangetask); //予約したタスクをキャンセルする
+                                    dayvotecomamnd = "nonvote";
+                                } else {
+                                    sender.sendMessage(ChatColor.RED + "投票が開始されていないため、このコマンドを実行できません。");
+                                }
+                                return true;
+                            }
+                        }
                     }
 
 
@@ -147,6 +150,15 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                             }
                         }
                         return false;
+                    }
+
+
+                    else if (args[0].equalsIgnoreCase("version")) {
+                        sender.sendMessage(ChatColor.AQUA + "====== " + ChatColor.WHITE + "WeatherVotePlugin " + ChatColor.AQUA + "=====");
+                        sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + "1.0.2");
+                        sender.sendMessage("");
+                        sender.sendMessage(ChatColor.GRAY + "Made by いね");
+                        return true;
                     }
 
 

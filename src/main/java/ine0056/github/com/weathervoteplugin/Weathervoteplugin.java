@@ -31,6 +31,7 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
     private static String dayvotecomamnd;
     private static int timechangetask;
     private static int dayfivemintasktask;
+    private static String playerrr;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -77,9 +78,9 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                     } else if (args[0].equalsIgnoreCase("day")) {
                         if ((dayfivemintask == "ok") || (dayfivemintask == null)) {
                             if ((dayvotecomamnd == "nonvote") || (dayvotecomamnd == null)) {
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "----------------------------------------");
+                                Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------------------------");
                                 Bukkit.broadcastMessage(ChatColor.AQUA + "1分後に" + ChatColor.RED + "建築ワールド" + ChatColor.AQUA + "の時間を昼にします。中断する場合は" + ChatColor.RED + "/mvote o day" + ChatColor.AQUA + "と入力してください。");
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "----------------------------------------");
+                                Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------------------------");
                                 dayvotecomamnd = "voted";
                                 dayfivemintask = "no";
                                 World world = Bukkit.getServer().getWorld("world");
@@ -113,9 +114,10 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                         } else {
                             if (args[1].equalsIgnoreCase("sun")) {
                                 if (sunvotecomamnd == "voted") {
-                                    Bukkit.broadcastMessage(ChatColor.GOLD + "------------------------------");
-                                    Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、天候の変更を中断しました");
-                                    Bukkit.broadcastMessage(ChatColor.GOLD + "------------------------------");
+                                    playerrr = ((Player) sender).getPlayer().getName();
+                                    Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
+                                    Bukkit.broadcastMessage(ChatColor.AQUA + playerrr + ChatColor.YELLOW + "さんの" + ChatColor.GOLD + "反対" + ChatColor.YELLOW + "により、" + ChatColor.GOLD + "天候" + ChatColor.YELLOW + "の変更を中断しました");
+                                    Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
                                     //  タイマーを止める
                                     Bukkit.getScheduler().cancelTask(weatherchangetask); //予約したタスクをキャンセルする
                                     sunvotecomamnd = "nonvote";
@@ -125,9 +127,10 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
                                 return true;
                             } else if (args[1].equalsIgnoreCase("day")) {
                                 if (dayvotecomamnd == "voted") {
-                                    Bukkit.broadcastMessage(ChatColor.GOLD + "------------------------------");
-                                    Bukkit.broadcastMessage(ChatColor.YELLOW + "反対があったため、時間の変更を中断しました");
-                                    Bukkit.broadcastMessage(ChatColor.GOLD + "------------------------------");
+                                    playerrr = ((Player) sender).getPlayer().getName();
+                                    Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
+                                    Bukkit.broadcastMessage(ChatColor.AQUA + playerrr + ChatColor.YELLOW + "さんの" + ChatColor.GOLD + "反対" + ChatColor.YELLOW + "により、" + ChatColor.GOLD + "時間" + ChatColor.YELLOW + "の変更を中断しました");
+                                    Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
                                     //  タイマーを止める
                                     Bukkit.getScheduler().cancelTask(timechangetask); //予約したタスクをキャンセルする
                                     dayvotecomamnd = "nonvote";
@@ -167,7 +170,7 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
 
                     else if (args[0].equalsIgnoreCase("version")) {
                         sender.sendMessage(ChatColor.AQUA + "====== " + ChatColor.WHITE + "WeatherVotePlugin " + ChatColor.AQUA + "=====");
-                        sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + "1.0.3");
+                        sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + "1.0.4");
                         sender.sendMessage("");
                         sender.sendMessage(ChatColor.GRAY + "Made by いね");
                         return true;

@@ -170,9 +170,9 @@ public final class Weathervoteplugin extends JavaPlugin implements CommandExecut
 
                     else if (args[0].equalsIgnoreCase("version")) {
                         sender.sendMessage(ChatColor.AQUA + "====== " + ChatColor.WHITE + "WeatherVotePlugin " + ChatColor.AQUA + "=====");
-                        sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + "1.0.4");
+                        sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + "1.0.4.1");
                         sender.sendMessage("");
-                        sender.sendMessage(ChatColor.GRAY + "Made by いね");
+                        sender.sendMessage(ChatColor.AQUA + "===========================");
                         return true;
                     }
 

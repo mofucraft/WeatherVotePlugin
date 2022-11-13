@@ -6,7 +6,7 @@
 
     <groupId>ine0056.github.com</groupId>
     <artifactId>weathervoteplugin</artifactId>
-    <version>1.0.4.1</version>
+    <version>1.1.0.release</version>
     <packaging>jar</packaging>
 
     <name>Weathervoteplugin</name>

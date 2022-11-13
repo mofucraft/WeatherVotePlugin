@@ -1,5 +1,5 @@
 # Weather vote plugin
-現在の最新バージョンは**1.0.4.1**です。
+現在の最新バージョンは**1.1.0**です。
 # Overview
 Weather vote plugin は プレイヤーの投票により、晴れまたは昼にするSpigotプラグインです。
 
@@ -22,3 +22,11 @@ Weather vote plugin は プレイヤーの投票により、晴れまたは昼�
 |/mvote oppose <sun / day>| mvote o <sun / day> |投票に反対する|default|
 |/mvote voteinfo| mvote info |現在の投票の状態を見る|default|
 |/mvote version| |現在のバージョンを見る|default|
+
+# 言語
+以下の言語に対応しています。
+
+| 言語 | Permission        |
+| --- |-------------------|
+| 日本語 |                   |
+| 英語 | mofucraft.english |

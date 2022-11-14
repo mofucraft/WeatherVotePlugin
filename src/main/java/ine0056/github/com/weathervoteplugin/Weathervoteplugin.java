@@ -25,7 +25,7 @@ public final class Weathervoteplugin extends JavaPlugin {
         if (command.getName().equalsIgnoreCase("mvote")) {
             if (sender instanceof Player player) {
                 if (args.length == 0) {
-                    return false;
+                    sender.sendMessage(getMessage(player, "system.help"));
                 } else {
                     World world = Bukkit.getServer().getWorld("world");
 
@@ -136,7 +136,7 @@ public final class Weathervoteplugin extends JavaPlugin {
                         }
 
                         default -> {
-                            return false;
+                            sender.sendMessage(getMessage(player, "system.help"));
                         }
                     }
 

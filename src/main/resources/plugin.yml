@@ -8,12 +8,4 @@ description: Weathervoteplugin
 commands:
   mvote:
     description: wheathervote plugin command
-    usage: |-
-      §c正しいコマンドを入力してください！
-      §b========== §fWeatherVotePlugin Commands §b==========
-      §6/mvote sun §f： 天候を晴れにする投票を開始する
-      §6/mvote day §f： 時間を昼にする投票を開始する
-      §6/mvote o sun §f: 天候を晴れにする投票に反対する
-      §6/mvote o day §f: 時間を昼にする投票に反対する
-      §6/mvote info §f: 現在の投票の状態を見る
-      §6/mvote version §f: 現在のプラグインのバージョンを見る
+    usage:

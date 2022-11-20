@@ -60,3 +60,8 @@ The following languages are supported.
 |:--------:|:------------------:|
 | Japanese |                    |
 | English  | mofucraft.english  |
+
+# ライセンス (Licence)
+このコードには、Apache License 2.0 が含まれています。
+
+This code includes Apache License 2.0.

@@ -60,3 +60,11 @@ The following languages are supported.
 |:--------:|:------------------:|
 | Japanese |                    |
 | English  | mofucraft.english  |
+
+# ライセンス (Licence)
+
+このコードはMIT Lisenceの元で公開されています。  
+This code is published under the MIT License.
+
+[Apache License 2.0 でライセンスされたコードが含まれています。]((https://github.com/mofucraft/WeatherVotePlugin/blob/main/src/main/java/ine0056/github/com/weathervoteplugin/MessageManager.java)  
+[Contains code licensed under the Apache License 2.0.](https://github.com/mofucraft/WeatherVotePlugin/blob/main/src/main/java/ine0056/github/com/weathervoteplugin/MessageManager.java)

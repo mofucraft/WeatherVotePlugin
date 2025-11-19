@@ -32,12 +32,15 @@ public final class Weathervoteplugin extends JavaPlugin {
                     switch (args[0]) { // Switch式による可読性の向上
                         case "sun" -> {
                             if (!voteSunStatus && checkCooldown(voteSunCooldownTime)) {
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "----------------------------------------");
-                                Bukkit.broadcastMessage(MessageManager.format(getMessage(player, "system.vote.start"),
-                                        getMessage(player, "system.vote.weather"),
-                                        getMessage(player, "weather.sun"),
-                                        "/mvote o sun"));
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "----------------------------------------");
+                                // 各プレイヤーの言語設定に応じてメッセージを送信
+                                for (Player p : Bukkit.getOnlinePlayers()) {
+                                    p.sendMessage(ChatColor.AQUA + "----------------------------------------");
+                                    p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start"),
+                                            getMessage(p, "system.vote.weather"),
+                                            getMessage(p, "weather.sun"),
+                                            "/mvote o sun"));
+                                    p.sendMessage(ChatColor.AQUA + "----------------------------------------");
+                                }
 
                                 voteSunStatus = true;
                                 voteSunCooldownTime = System.currentTimeMillis();
@@ -45,9 +48,11 @@ public final class Weathervoteplugin extends JavaPlugin {
                                 weatherChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { //指定したTick後に処理を実行する
                                     world.setStorm(false);
                                     world.setThundering(false);
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------");
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + MessageManager.format(getMessage(player, "system.vote.changed"), getMessage(player, "system.vote.weather")));
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------");
+                                    for (Player p : Bukkit.getOnlinePlayers()) {
+                                        p.sendMessage(ChatColor.AQUA + "------------------------------");
+                                        p.sendMessage(ChatColor.AQUA + MessageManager.format(getMessage(p, "system.vote.changed"), getMessage(p, "system.vote.weather")));
+                                        p.sendMessage(ChatColor.AQUA + "------------------------------");
+                                    }
 
                                     voteSunStatus = false;
                                 }, 1200L).getTaskId();
@@ -60,21 +65,26 @@ public final class Weathervoteplugin extends JavaPlugin {
 
                         case "day" -> {
                             if (!voteDayStatus && checkCooldown(voteDayCooldownTime)) {
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------------------------");
-                                Bukkit.broadcastMessage(MessageManager.format(getMessage(player, "system.vote.start"),
-                                        getMessage(player, "system.vote.time"),
-                                        getMessage(player, "weather.day"),
-                                        "/mvote o day"));
-                                Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------------------------");
+                                // 各プレイヤーの言語設定に応じてメッセージを送信
+                                for (Player p : Bukkit.getOnlinePlayers()) {
+                                    p.sendMessage(ChatColor.AQUA + "------------------------------------------------");
+                                    p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start"),
+                                            getMessage(p, "system.vote.time"),
+                                            getMessage(p, "weather.day"),
+                                            "/mvote o day"));
+                                    p.sendMessage(ChatColor.AQUA + "------------------------------------------------");
+                                }
 
                                 voteDayStatus = true;
                                 voteDayCooldownTime = System.currentTimeMillis();
 
                                 timeChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { //指定したTick後に処理を実行する
                                     world.setTime(1000);
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------");
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + MessageManager.format(getMessage(player, "system.vote.changed"), getMessage(player, "system.vote.time")));
-                                    Bukkit.broadcastMessage(ChatColor.AQUA + "------------------------------");
+                                    for (Player p : Bukkit.getOnlinePlayers()) {
+                                        p.sendMessage(ChatColor.AQUA + "------------------------------");
+                                        p.sendMessage(ChatColor.AQUA + MessageManager.format(getMessage(p, "system.vote.changed"), getMessage(p, "system.vote.time")));
+                                        p.sendMessage(ChatColor.AQUA + "------------------------------");
+                                    }
 
                                     voteDayStatus = false;
                                 }, 1200L).getTaskId();
@@ -99,11 +109,14 @@ public final class Weathervoteplugin extends JavaPlugin {
                                     return true;
                                 }
 
-                                Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
-                                Bukkit.broadcastMessage(MessageManager.format(getMessage(player, "system.vote.start.cancel"),
-                                        player.getName(),
-                                        isDay ? getMessage(player, "system.vote.time") : getMessage(player, "system.vote.weather")));
-                                Bukkit.broadcastMessage(ChatColor.GOLD + "--------------------------------------");
+                                // 各プレイヤーの言語設定に応じてメッセージを送信
+                                for (Player p : Bukkit.getOnlinePlayers()) {
+                                    p.sendMessage(ChatColor.GOLD + "--------------------------------------");
+                                    p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start.cancel"),
+                                            player.getName(),
+                                            isDay ? getMessage(p, "system.vote.time") : getMessage(p, "system.vote.weather")));
+                                    p.sendMessage(ChatColor.GOLD + "--------------------------------------");
+                                }
 
                                 // 予約したタスクをキャンセルする
                                 if (isDay) {

@@ -8,6 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Weathervoteplugin extends JavaPlugin {
 
@@ -38,19 +41,22 @@ public final class Weathervoteplugin extends JavaPlugin {
                                     p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start"),
                                             getMessage(p, "system.vote.weather"),
                                             getMessage(p, "weather.sun"),
-                                            "/mvote o sun"));
+                                            "/mvote o sun",
+                                            player.getName()));
                                     p.sendMessage(ChatColor.AQUA + "----------------------------------------");
                                 }
 
                                 voteSunStatus = true;
                                 voteSunCooldownTime = System.currentTimeMillis();
 
-                                weatherChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { //指定したTick後に処理を実行する
+                                weatherChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { // 指定したTick後に処理を実行する
                                     world.setStorm(false);
                                     world.setThundering(false);
                                     for (Player p : Bukkit.getOnlinePlayers()) {
                                         p.sendMessage(ChatColor.AQUA + "------------------------------");
-                                        p.sendMessage(ChatColor.AQUA + MessageManager.format(getMessage(p, "system.vote.changed"), getMessage(p, "system.vote.weather")));
+                                        p.sendMessage(ChatColor.AQUA
+                                                + MessageManager.format(getMessage(p, "system.vote.changed"),
+                                                        getMessage(p, "system.vote.weather")));
                                         p.sendMessage(ChatColor.AQUA + "------------------------------");
                                     }
 
@@ -71,18 +77,21 @@ public final class Weathervoteplugin extends JavaPlugin {
                                     p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start"),
                                             getMessage(p, "system.vote.time"),
                                             getMessage(p, "weather.day"),
-                                            "/mvote o day"));
+                                            "/mvote o day",
+                                            player.getName()));
                                     p.sendMessage(ChatColor.AQUA + "------------------------------------------------");
                                 }
 
                                 voteDayStatus = true;
                                 voteDayCooldownTime = System.currentTimeMillis();
 
-                                timeChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { //指定したTick後に処理を実行する
+                                timeChangeTask = Bukkit.getScheduler().runTaskLater(this, () -> { // 指定したTick後に処理を実行する
                                     world.setTime(1000);
                                     for (Player p : Bukkit.getOnlinePlayers()) {
                                         p.sendMessage(ChatColor.AQUA + "------------------------------");
-                                        p.sendMessage(ChatColor.AQUA + MessageManager.format(getMessage(p, "system.vote.changed"), getMessage(p, "system.vote.time")));
+                                        p.sendMessage(ChatColor.AQUA
+                                                + MessageManager.format(getMessage(p, "system.vote.changed"),
+                                                        getMessage(p, "system.vote.time")));
                                         p.sendMessage(ChatColor.AQUA + "------------------------------");
                                     }
 
@@ -114,7 +123,8 @@ public final class Weathervoteplugin extends JavaPlugin {
                                     p.sendMessage(ChatColor.GOLD + "--------------------------------------");
                                     p.sendMessage(MessageManager.format(getMessage(p, "system.vote.start.cancel"),
                                             player.getName(),
-                                            isDay ? getMessage(p, "system.vote.time") : getMessage(p, "system.vote.weather")));
+                                            isDay ? getMessage(p, "system.vote.time")
+                                                    : getMessage(p, "system.vote.weather")));
                                     p.sendMessage(ChatColor.GOLD + "--------------------------------------");
                                 }
 
@@ -133,17 +143,23 @@ public final class Weathervoteplugin extends JavaPlugin {
                             // 天気投票の情報表示
                             sender.sendMessage(MessageManager.format(getMessage(player, "system.vote.status"),
                                     getMessage(player, "system.vote.weather"),
-                                    getMessage(player, !voteSunStatus && checkCooldown(voteSunCooldownTime) ? "system.vote.enable" : "system.vote.disable")));
+                                    getMessage(player,
+                                            !voteSunStatus && checkCooldown(voteSunCooldownTime) ? "system.vote.enable"
+                                                    : "system.vote.disable")));
 
                             // 時間投票の情報表示
                             sender.sendMessage(MessageManager.format(getMessage(player, "system.vote.status"),
                                     getMessage(player, "system.vote.time"),
-                                    getMessage(player, !voteDayStatus && checkCooldown(voteDayCooldownTime) ? "system.vote.enable" : "system.vote.disable")));
+                                    getMessage(player,
+                                            !voteDayStatus && checkCooldown(voteDayCooldownTime) ? "system.vote.enable"
+                                                    : "system.vote.disable")));
                         }
 
                         case "version" -> {
-                            sender.sendMessage(ChatColor.AQUA + "====== " + ChatColor.WHITE + "WeatherVotePlugin " + ChatColor.AQUA + "=====");
-                            sender.sendMessage(ChatColor.AQUA + "Version : " + ChatColor.WHITE + getDescription().getVersion());
+                            sender.sendMessage(ChatColor.AQUA + "====== " + ChatColor.WHITE + "WeatherVotePlugin "
+                                    + ChatColor.AQUA + "=====");
+                            sender.sendMessage(
+                                    ChatColor.AQUA + "Version : " + ChatColor.WHITE + getDescription().getVersion());
                             sender.sendMessage("");
                             sender.sendMessage(ChatColor.AQUA + "===========================");
                         }
@@ -177,5 +193,36 @@ public final class Weathervoteplugin extends JavaPlugin {
         if (player.hasPermission("mofucraft.english"))
             return ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage("en_US", index));
         return ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage(index));
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (!command.getName().equalsIgnoreCase("mvote")) {
+            return null;
+        }
+
+        List<String> completions = new ArrayList<>();
+
+        if (args.length == 1) {
+            // 第1引数の補完: sun, day, o, info, version
+            List<String> subCommands = Arrays.asList("sun", "day", "o", "info", "version");
+            for (String subCommand : subCommands) {
+                if (subCommand.toLowerCase().startsWith(args[0].toLowerCase())) {
+                    completions.add(subCommand);
+                }
+            }
+        } else if (args.length == 2) {
+            // 第2引数の補完: oまたはopposeの後にsun, dayを補完
+            if (args[0].equalsIgnoreCase("o") || args[0].equalsIgnoreCase("oppose")) {
+                List<String> options = Arrays.asList("sun", "day");
+                for (String option : options) {
+                    if (option.toLowerCase().startsWith(args[1].toLowerCase())) {
+                        completions.add(option);
+                    }
+                }
+            }
+        }
+
+        return completions;
     }
 }

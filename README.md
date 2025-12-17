@@ -1,7 +1,7 @@
 # Weather vote plugin
-現在の最新バージョンは**1.1.2**です。
+現在の最新バージョンは**1.1.3**です。
 
-The current latest version is **1.1.2**.
+The current latest version is **1.1.3**.
 # Overview
 Weather vote plugin は プレイヤーの投票により、晴れまたは昼にするSpigotプラグインです。
 

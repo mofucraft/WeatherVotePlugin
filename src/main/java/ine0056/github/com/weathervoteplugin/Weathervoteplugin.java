@@ -197,11 +197,11 @@ public final class Weathervoteplugin extends JavaPlugin {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (!command.getName().equalsIgnoreCase("mvote")) {
-            return null;
-        }
-
         List<String> completions = new ArrayList<>();
+
+        if (!command.getName().equalsIgnoreCase("mvote")) {
+            return completions; // 空のリストを返してプレイヤー名の表示を防ぐ
+        }
 
         if (args.length == 1) {
             // 第1引数の補完: sun, day, o, info, version
@@ -222,6 +222,7 @@ public final class Weathervoteplugin extends JavaPlugin {
                 }
             }
         }
+        // args.length >= 3 の場合も空のリストを返す（プレイヤー名を表示しない）
 
         return completions;
     }
